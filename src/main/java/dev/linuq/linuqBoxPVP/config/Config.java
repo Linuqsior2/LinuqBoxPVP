@@ -1,9 +1,9 @@
 package dev.linuq.linuqBoxPVP.config;
 
-import dev.linuq.LinuqBoxPVP.config.helpers.PermissionDropChance;
+import dev.linuq.linuqBoxPVP.config.helpers.MaterialBreakBlocks;
+import dev.linuq.linuqBoxPVP.config.helpers.PermissionDropChance;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
-import lombok.Getter;
 import org.bukkit.Material;
 
 import java.util.*;
@@ -20,7 +20,6 @@ public class Config extends OkaeriConfig {
 
     @Comment("Permisje i procenty do dropienia odłamków")
     public Map<String, PermissionDropChance> permissionDrops = new LinkedHashMap<>();
-
     {
         permissionDrops.put("linuqboxpvpaddon.default", new PermissionDropChance(25.3));
         permissionDrops.put("linuqboxpvpaddon.vip", new PermissionDropChance(30.5));
@@ -53,12 +52,32 @@ public class Config extends OkaeriConfig {
         loreOdlamek.add("");
     }
 
+    @Comment("Material odłamka")
+    public Material materialOdlamek = Material.GLOWSTONE_DUST;
+
     @Comment("SEKCJA BLOKÓW")
     @Comment
+    @Comment("Jakie mają być zablokowane itemy/bloki do zniszczenia")
+    public List<Material> blockedBreakBlocks = List.of(Material.IRON_BLOCK, Material.GOLD_BLOCK);
+
     @Comment("Jakie mają być zablokowane itemy/bloki do postawienia")
-    public List<Material> blockedItems = List.of(Material.IRON_BLOCK, Material.GOLD_BLOCK);
+    public List<Material> blockedPlaceBlocks = List.of(Material.IRON_BLOCK, Material.GOLD_BLOCK);
+
+    @Comment("Jaki blok można zniszczyć jakim itemem")
+    public Map<Material, MaterialBreakBlocks> breakableBlocks = new LinkedHashMap<>();
+    {
+        breakableBlocks.put(Material.SPONGE, new MaterialBreakBlocks(Arrays.asList(Material.WOODEN_HOE, Material.DIAMOND_HOE)));
+
+    }
+
+    @Comment("Title i subtitle kiedy gracz niszczy blok niedozwolonym itemem")
+    public String titleBreakBlocks = "&#FF0000&lBŁĄD!";
+    public String subTitleBreakBlocks = "&cNie możesz niszczyć tym itemem tego bloku";
 
     @Comment("Wiadomość gdy gracz próbuje postawić niedozwolony blok")
-    public String blockedItemsMessage = "&cNie możesz postawić tego bloku";
+    public String blockedPlaceBlocksMessage = "&cNie możesz postawić tego bloku";
+
+    @Comment("Wiadomość gdy gracz próbuje zniszczyć niedozwolony blok")
+    public String blockedBreakBlocksMessage = "&cNie możesz zniszczyć tego bloku";
 
 }

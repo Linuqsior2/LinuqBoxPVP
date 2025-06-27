@@ -3,4 +3,7 @@ version: '1.0'
 main: dev.linuq.linuqBoxPVP.LinuqBoxPVP
 api-version: '1.18'
 authors: [ Linuqsior ]
-description: ergr
+description: Plugin na ustawiania boxpvp
+commands:
+  linuqboxpvp:
+    permission: linuqboxpvp.admin

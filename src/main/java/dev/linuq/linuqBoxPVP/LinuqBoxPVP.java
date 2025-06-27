@@ -1,8 +1,8 @@
 package dev.linuq.linuqBoxPVP;
 
-import dev.linuq.LinuqBoxPVP.cmd.LinuqBoxPVPCMD;
-import dev.linuq.LinuqBoxPVP.config.Config;
-import dev.linuq.LinuqBoxPVP.listener.*;
+import dev.linuq.linuqBoxPVP.cmd.LinuqBoxPVPCMD;
+import dev.linuq.linuqBoxPVP.config.Config;
+import dev.linuq.linuqBoxPVP.listener.*;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,7 +29,7 @@ public final class LinuqBoxPVP extends JavaPlugin {
             return;
         }
         getCommand("linuqboxpvp").setExecutor(new LinuqBoxPVPCMD(config));
-        getServer().getPluginManager().registerEvents(new BlockPlaceListener(config),this);
+        getServer().getPluginManager().registerEvents(new BlockListener(config),this);
     }
 
     @Override

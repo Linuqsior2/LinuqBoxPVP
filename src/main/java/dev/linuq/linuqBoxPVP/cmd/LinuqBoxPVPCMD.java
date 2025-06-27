@@ -1,7 +1,7 @@
 package dev.linuq.linuqBoxPVP.cmd;
 
-import dev.linuq.LinuqBoxPVP.config.Config;
-import dev.linuq.LinuqBoxPVP.utils.ColorFixer;
+import dev.linuq.linuqBoxPVP.config.Config;
+import dev.linuq.linuqBoxPVP.utils.ColorFixer;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

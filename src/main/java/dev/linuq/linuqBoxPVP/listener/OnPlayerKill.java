@@ -1,8 +1,8 @@
 package dev.linuq.linuqBoxPVP.listener;
 
-import dev.linuq.LinuqBoxPVP.config.Config;
-import dev.linuq.LinuqBoxPVP.config.helpers.PermissionDropChance;
-import dev.linuq.LinuqBoxPVP.utils.ColorFixer;
+import dev.linuq.linuqBoxPVP.config.Config;
+import dev.linuq.linuqBoxPVP.config.helpers.PermissionDropChance;
+import dev.linuq.linuqBoxPVP.utils.ColorFixer;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -41,7 +41,7 @@ public class OnPlayerKill implements Listener {
             }
 
             if (rand.nextInt(100) < chance) {
-                ItemStack fragment = new ItemStack(Material.GLOWSTONE_DUST);
+                ItemStack fragment = new ItemStack(config.materialOdlamek);
 
                 ItemMeta fragmentMeta = fragment.getItemMeta();
                 if (fragmentMeta != null) {
