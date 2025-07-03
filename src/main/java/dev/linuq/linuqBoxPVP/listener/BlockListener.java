@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 public class BlockListener implements Listener {
     public Config config;
@@ -52,15 +53,26 @@ public class BlockListener implements Listener {
             }
         }
 
+        event.setDropItems(false);
         Collection<ItemStack> drops = event.getBlock().getDrops(player.getInventory().getItemInMainHand());
         for (ItemStack drop : drops) {
             int amount = (int) Math.round(drop.getAmount() * config.fortuneBlocks);
             if (amount > 0) {
                 ItemStack multipliedDrop = drop.clone();
                 multipliedDrop.setAmount(amount);
-                player.getWorld().dropItemNaturally(event.getBlock().getLocation(), multipliedDrop);
+                if (config.dropToInventory) {
+                    HashMap<Integer, ItemStack> notStored = player.getInventory().addItem(multipliedDrop);
+                    if (!notStored.isEmpty()) {
+                        for (ItemStack item : notStored.values()) {
+                            player.getWorld().dropItemNaturally(event.getBlock().getLocation(), item);
+                        }
+                    }
+                } else {
+                    player.getWorld().dropItemNaturally(event.getBlock().getLocation(), multipliedDrop);
+                }
             }
         }
         event.getBlock().setType(Material.AIR);
     }
+
 }
