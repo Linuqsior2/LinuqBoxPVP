@@ -70,6 +70,9 @@ public class Config extends OkaeriConfig {
 
     }
 
+    @Comment("Jaki ma być mnożnik bloków")
+    public double fortuneBlocks = 1.5;
+
     @Comment("Title i subtitle kiedy gracz niszczy blok niedozwolonym itemem")
     public String titleBreakBlocks = "&#FF0000&lBŁĄD!";
     public String subTitleBreakBlocks = "&cNie możesz niszczyć tym itemem tego bloku";

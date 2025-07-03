@@ -9,6 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.Collection;
 
 public class BlockListener implements Listener {
     public Config config;
@@ -32,21 +35,32 @@ public class BlockListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         Material blockType = event.getBlock().getType();
-        Material itemInHand = player.getInventory().getItemInMainHand().getType();
-
-        MaterialBreakBlocks mbb = config.breakableBlocks.get(blockType);
 
         if (config.blockedBreakBlocks.contains(blockType)) {
             event.setCancelled(true);
             player.sendMessage(ColorFixer.addColors(config.prefix + config.blockedBreakBlocksMessage));
+            return;
         }
 
-        if (mbb != null) {
-            if (!mbb.getMaterial().contains(itemInHand)) {
+        if (config.breakableBlocks.get(blockType) != null) {
+            Material itemInHand = player.getInventory().getItemInMainHand().getType();
+            if (!config.breakableBlocks.get(blockType).getMaterial().contains(itemInHand)) {
                 event.setCancelled(true);
                 player.sendMessage(ColorFixer.addColors(config.prefix + "&cNie możesz zniszczyć tego bloku tym przedmiotem!"));
                 player.sendTitle(ColorFixer.addColors(config.titleBreakBlocks), ColorFixer.addColors(config.subTitleBreakBlocks));
+                return;
             }
         }
+
+        Collection<ItemStack> drops = event.getBlock().getDrops(player.getInventory().getItemInMainHand());
+        for (ItemStack drop : drops) {
+            int amount = (int) Math.round(drop.getAmount() * config.fortuneBlocks);
+            if (amount > 0) {
+                ItemStack multipliedDrop = drop.clone();
+                multipliedDrop.setAmount(amount);
+                player.getWorld().dropItemNaturally(event.getBlock().getLocation(), multipliedDrop);
+            }
+        }
+        event.getBlock().setType(Material.AIR);
     }
 }
