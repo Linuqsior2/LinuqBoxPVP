@@ -6,4 +6,4 @@
 - Ustawienie x2 dropowania odłamka za zabicie gracza
 - Niszczenie bloków danym itemem
 - Ustawienie fortuny dla bloków
-- Dropowanie do ekwipunku bloków
+- Dropowanie do ekwipunku zniszczonych bloków
