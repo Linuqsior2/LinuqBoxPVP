@@ -47,10 +47,12 @@ public class BlockListener implements Listener {
         Material blockType = event.getBlock().getType();
         Location location = event.getBlock().getLocation();
 
-        if (config.blockedBreakBlocks.contains(blockType)) {
-            event.setCancelled(true);
-            player.sendMessage(ColorFixer.addColors(config.prefix + config.blockedBreakBlocksMessage));
-            return;
+        if (!player.hasPermission("linuqboxpvp.bypass")) {
+            if (!config.allowedBreakBlocks.isEmpty() && !config.allowedBreakBlocks.contains(blockType)) {
+                event.setCancelled(true);
+                player.sendMessage(ColorFixer.addColors(config.prefix + config.allowedBreakBlocksMessage));
+                return;
+            }
         }
 
         if (config.breakableBlocks.get(blockType) != null) {

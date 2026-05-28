@@ -1,5 +1,5 @@
 name: LinuqBoxPVP
-version: '1.2'
+version: '1.2.1'
 main: dev.linuq.linuqBoxPVP.LinuqBoxPVP
 api-version: '1.18'
 author: Linuqsior
@@ -7,3 +7,10 @@ description: Plugin na ustawiania boxpvp
 commands:
   linuqboxpvp:
     permission: linuqboxpvp.admin
+permissions:
+    linuqboxpvp.admin:
+        description: Pozwala na używanie komendy /linuqboxpvp
+        default: op
+    linuqboxpvp.bypass:
+        description: Pozwala ominąć ograniczenia niszczenia bloków
+        default: op

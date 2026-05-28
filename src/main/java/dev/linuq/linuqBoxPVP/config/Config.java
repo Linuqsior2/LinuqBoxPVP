@@ -58,7 +58,7 @@ public class Config extends OkaeriConfig {
     @Comment("SEKCJA BLOKÓW")
     @Comment
     @Comment("Jakie mają być zablokowane itemy/bloki do zniszczenia")
-    public List<Material> blockedBreakBlocks = List.of(Material.IRON_BLOCK, Material.GOLD_BLOCK);
+    public List<Material> allowedBreakBlocks = List.of(Material.IRON_BLOCK, Material.GOLD_BLOCK);
 
     @Comment("Jakie mają być zablokowane itemy/bloki do postawienia")
     public List<Material> blockedPlaceBlocks = List.of(Material.IRON_BLOCK, Material.GOLD_BLOCK);
@@ -71,7 +71,7 @@ public class Config extends OkaeriConfig {
     }
 
     @Comment("Jaki ma być mnożnik bloków")
-    public double fortuneBlocks = 1.5;
+    public int fortuneBlocks = 2;
 
     @Comment("Czy ma być włączone dropowanie skopanych bloków do inventory")
     public boolean dropToInventory = true;
@@ -84,6 +84,6 @@ public class Config extends OkaeriConfig {
     public String blockedPlaceBlocksMessage = "&cNie możesz postawić tego bloku";
 
     @Comment("Wiadomość gdy gracz próbuje zniszczyć niedozwolony blok")
-    public String blockedBreakBlocksMessage = "&cNie możesz zniszczyć tego bloku";
+    public String allowedBreakBlocksMessage = "&cMożesz niszczyć tylko dozwolone bloki";
 
 }
